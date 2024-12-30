@@ -10,7 +10,11 @@
     </div>
     <nav class="mt-6">
         <ul>
-            <li class="px-4 py-2 hover:bg-gray-700"><a href="/admin/2112/" class="block">Data Reservasi</a></li>
+            <li class="px-4 py-2 hover:bg-gray-700"><a href="{{Route('rsv.index')}}" class="block">Data Reservasi</a>
+            </li>
+            <li class="px-4 py-2 hover:bg-gray-700"><a href="{{Route('rsv.input')}}" class="block">Input
+                    Reservasi</a>
+            </li>
             <li class="px-4 py-2 hover:bg-gray-700"><a href="/admin/2112/wish" class="block">Data Wishes</a></li>
             <li class="px-4 py-2 hover:bg-gray-700"><a href="/admin/2112/inputtamu" class="block">Input Tamu</a></li>
             <li class="px-4 py-2 hover:bg-gray-700"><a href="/admin/2112/datatamu" class="block">Daftar Tamu</a></li>
