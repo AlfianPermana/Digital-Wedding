@@ -36,4 +36,12 @@ class WishesController extends Controller
 
         return redirect()->back()->with('success', 'Data Tamu Tersimpan');
     }
+
+    public function destroy($id)
+    {
+        $wish = wishes::find($id);
+        $wish->delete();
+
+        return redirect()->route('wish.index')->with('success', 'Data Tamu Berhasil Dihapus');
+    }
 }

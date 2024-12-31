@@ -35,7 +35,7 @@ Route::get('/admin/2112/inputwish', function () {
 Route::get('/admin/2112/datawish', [WishesController::class, 'index'])->name('wish.index');
 Route::get('/admin/2112/inputwish', [WishesController::class, 'store'])->name('wish.input');
 Route::post('/admin/2112/inputwish', [WishesController::class, 'tambah'])->name('wish.tambah');
-Route::delete('/rsv/{id}', [WishesController::class, 'destroy'])->name('wish.destroy');
+Route::delete('/wish/{id}', [WishesController::class, 'destroy'])->name('wish.destroy');
 
 Route::get('/admin/2112/datarsv', [RsvController::class, 'index'])->name('rsv.index');
 Route::get('/admin/2112/inputrsv', [RsvController::class, 'store'])->name('rsv.input');
