@@ -12,16 +12,19 @@
             </tr>
         </thead>
         <tbody class="text-gray-700">
-            <tr class="border-b hover:bg-gray-50 transition-colors duration-200">
-                <td class="px-6 py-4">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                <td class="px-6 py-4">Malcolm Lockyer</td>
-                <td class="px-6 py-4 flex">
-                    <button
-                        class="w-full bg-transparent hover:bg-blue-400 text-blue-400 hover:text-white border border-blue-400 font-bold p-2 rounded-full me-3">Update</button>
-                    <button
-                        class="w-full bg-transparent hover:bg-red-800 text-red-800 hover:text-white border border-red-800 font-bold p-2 rounded-full me-3">Delete</button>
-                </td>
-            </tr>
+            @foreach ($wish as $data)
+                <tr class="border-b hover:bg-gray-50 transition-colors duration-200">
+                    <td class="px-6 py-4">{{{$data->name}}}</td>
+                    <td class="px-6 py-4 w-1/2">{{$data->wish}}</td>
+                    <td class="px-6 py-4 flex">
+                        <button
+                            class="w-full bg-transparent hover:bg-blue-400 text-blue-400 hover:text-white border border-blue-400 font-bold p-2 rounded-full me-3">Update</button>
+                        <button
+                            class="w-full bg-transparent hover:bg-red-800 text-red-800 hover:text-white border border-red-800 font-bold p-2 rounded-full me-3">Delete</button>
+                    </td>
+                </tr>
+            @endforeach
+
         </tbody>
     </table>
 </div>

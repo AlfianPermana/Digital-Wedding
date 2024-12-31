@@ -15,7 +15,10 @@
             <li class="px-4 py-2 hover:bg-gray-700"><a href="{{Route('rsv.input')}}" class="block">Input
                     Reservasi</a>
             </li>
-            <li class="px-4 py-2 hover:bg-gray-700"><a href="/admin/2112/wish" class="block">Data Wishes</a></li>
+            <li class="px-4 py-2 hover:bg-gray-700"><a href="{{Route('wish.index')}}" class="block">Data Wishes</a></li>
+            <li class="px-4 py-2 hover:bg-gray-700"><a href="{{Route('wish.input')}}" class="block">Input
+                    Wishes</a>
+            </li>
             <li class="px-4 py-2 hover:bg-gray-700"><a href="/admin/2112/inputtamu" class="block">Input Tamu</a></li>
             <li class="px-4 py-2 hover:bg-gray-700"><a href="/admin/2112/datatamu" class="block">Daftar Tamu</a></li>
         </ul>

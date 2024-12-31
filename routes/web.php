@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TamuController;
 use App\Http\Controllers\RsvController;
+use App\Http\Controllers\WishesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,14 @@ Route::get('/admin/2112/', function () {
     return view('content.datareservasi');
 });
 
-Route::get('/admin/2112/inputrsv', function () {
-    return view('content.inputrsv');
+Route::get('/admin/2112/inputwish', function () {
+    return view('content.inputwish');
 });
+
+Route::get('/admin/2112/datawish', [WishesController::class, 'index'])->name('wish.index');
+Route::get('/admin/2112/inputwish', [WishesController::class, 'store'])->name('wish.input');
+Route::post('/admin/2112/inputwish', [WishesController::class, 'tambah'])->name('wish.tambah');
+Route::delete('/rsv/{id}', [WishesController::class, 'destroy'])->name('wish.destroy');
 
 Route::get('/admin/2112/datarsv', [RsvController::class, 'index'])->name('rsv.index');
 Route::get('/admin/2112/inputrsv', [RsvController::class, 'store'])->name('rsv.input');
