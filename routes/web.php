@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TamuController;
 use App\Http\Controllers\RsvController;
 use App\Http\Controllers\WishesController;
+use App\Http\Controllers\LayarUtamaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,9 @@ use App\Http\Controllers\WishesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/dashboard', function () {
+    return view('content.dashboard');
 });
 
 Route::get('/admin/2112/wish', function () {
@@ -31,6 +33,9 @@ Route::get('/admin/2112/', function () {
 Route::get('/admin/2112/inputwish', function () {
     return view('content.inputwish');
 });
+
+Route::get('/wedding/{name}/{id}', [LayarUtamaController::class, 'show'])->name('home.wedding');
+Route::get('/wedding/{id}', [LayarUtamaController::class, 'index'])->name('home.utama');
 
 Route::get('/admin/2112/datawish', [WishesController::class, 'index'])->name('wish.index');
 Route::get('/admin/2112/inputwish', [WishesController::class, 'store'])->name('wish.input');

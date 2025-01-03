@@ -21,10 +21,11 @@
                         <td class="px-4 md:px-6 py-4">{{ $data->email }}</td>
                         <td class="px-4 md:px-6 py-4">{{ $data->phone }}</td>
                         <td class="px-4 md:px-6 py-4">
-                            <a href="{{ url('/wedding/' . str_replace(' ', '', $data->name) . '/' . $data->id_link) }}"
+                            <a href="{{ route('home.wedding', ['name' => str_replace(' ', '', $data->name), 'id' => $data->id]) }}"
                                 class="text-blue-600 hover:text-blue-800">
-                                {{ url('/wedding/' . str_replace(' ', '', $data->name) . '/' . $data->id_link) }}
+                                {{ url('/wedding/' . str_replace(' ', '', $data->name) . '/' . $data->id) }}
                             </a>
+
                         </td>
                         <td class="px-4 md:px-6 py-4 flex flex-wrap gap-2">
                             <a href="{{ url('admin/tamu/' . $data->id)}}"

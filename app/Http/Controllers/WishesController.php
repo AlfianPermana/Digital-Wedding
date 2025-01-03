@@ -15,6 +15,8 @@ class WishesController extends Controller
         return view('content.datawishes', compact('wish'));
     }
 
+
+
     public function store()
     {
         return view('content.inputwish');
