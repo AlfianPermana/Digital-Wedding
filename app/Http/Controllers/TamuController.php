@@ -54,7 +54,6 @@ class TamuController extends Controller
             'nama' => 'required',
             'email' => 'required',
             'phone' => 'required|numeric|min:10|max:13',
-            'link' => 'required',
         ]);
 
         $tamu = Tamu::findOrFail($id);
