@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\rsv;
 use App\Models\tamu;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ReservasiRequest;
 
 class RsvController extends Controller
 {
@@ -27,22 +28,9 @@ class RsvController extends Controller
         return view('content.inputrsv');
     }
 
-    public function tambah(Request $request)
+    public function tambah(ReservasiRequest $request)
     {
-        Validator::make($request->all(), [
-            'nama' => 'required',
-            'email' => 'required',
-            'phone' => 'required|numeric|min:10|max:13',
-            'status' => 'required',
-        ]);
-
-        rsv::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'status' => $request->status,
-        ]);
-
+        rsv::create($request->all());
         return redirect()->back()->with('success', 'Data Kehadiran Tersimpan');
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TamuRequest;
 use Illuminate\Http\Request;
 use App\Models\tamu;
 use Illuminate\Support\Facades\Validator;
@@ -20,24 +21,9 @@ class TamuController extends Controller
         return view('content.inputtamu');
     }
 
-    public function tambah(Request $request)
+    public function tambah(TamuRequest $request)
     {
-        Validator::make($request->all(), [
-            'nama' => 'required',
-            'email' => 'required',
-            'phone' => 'required|numeric|min:10|max:13',
-            'link' => 'required',
-        ]);
-
-        $id = uniqid();
-
-        Tamu::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'id_link' => $id,
-        ]);
-
+        Tamu::create($request->all());
         return redirect()->back()->with('success', 'Data Tamu Tersimpan');
     }
 
@@ -48,14 +34,8 @@ class TamuController extends Controller
         return view('content.updatetamu', compact('tamu'));
     }
 
-    public function update(Request $request, $id)
+    public function update(TamuRequest $request, $id)
     {
-        Validator::make($request->all(), [
-            'nama' => 'required',
-            'email' => 'required',
-            'phone' => 'required|numeric|min:10|max:13',
-        ]);
-
         $tamu = Tamu::findOrFail($id);
         $tamu->update($request->all());
 

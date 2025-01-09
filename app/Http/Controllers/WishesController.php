@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\wishes;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\WishesRequest;
 
 class WishesController extends Controller
 {
@@ -15,26 +16,14 @@ class WishesController extends Controller
         return view('content.datawishes', compact('wish'));
     }
 
-
-
     public function store()
     {
         return view('content.inputwish');
     }
 
-    public function tambah(Request $request)
+    public function tambah(WishesRequest $request)
     {
-        Validator::make($request->all(), [
-            'nama' => 'required',
-            'wish' => 'required',
-        ]);
-
-        $id = uniqid();
-
-        wishes::create([
-            'name' => $request->name,
-            'wish' => $request->wish,
-        ]);
+        wishes::create($request->all());
 
         return redirect()->back()->with('success', 'Data Tamu Tersimpan');
     }

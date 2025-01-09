@@ -13,4 +13,6 @@ class wishes extends Model
         'name',
         'wish',
     ];
+
+
 }

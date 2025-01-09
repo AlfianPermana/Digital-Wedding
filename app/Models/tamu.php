@@ -13,6 +13,7 @@ class tamu extends Model
         'name',
         'email',
         'phone',
-        'id_link',
     ];
+
+
 }

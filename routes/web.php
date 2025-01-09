@@ -5,6 +5,7 @@ use App\Http\Controllers\TamuController;
 use App\Http\Controllers\RsvController;
 use App\Http\Controllers\WishesController;
 use App\Http\Controllers\LayarUtamaController;
+use App\Http\Controllers\APIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +55,9 @@ Route::get('/admin/tamu/{id}', [TamuController::class, 'show'])->name('tamu.show
 Route::post('/admin/tamu/{id}', [TamuController::class, 'update'])->name('tamu.update');
 Route::delete('/tamu/{id}', [TamuController::class, 'destroy'])->name('tamu.destroy');
 
+/* Route API */
+Route::get('/api/tamu', [APIController::class, 'index']);
+Route::get('/api/tamu/{id}', [APIController::class, 'show']);
+Route::post('/api/tamu', [APIController::class, 'tambah']);
+Route::post('/api/tamu/{id}', [APIController::class, 'update']);
+Route::delete('/api/tamu/{id}', [APIController::class, 'destroy']);

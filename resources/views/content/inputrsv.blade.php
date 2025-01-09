@@ -15,6 +15,9 @@
                     <input type="text" id="name" name="name" placeholder="Enter your name"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                         required>
+                    @error('name')
+                        <div class="font-medium text-red-600">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div>
@@ -22,6 +25,9 @@
                     <input type="email" id="email" name="email" placeholder="Enter your email"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                         required>
+                    @error('email')
+                        <div class="font-medium text-red-600">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div>
@@ -29,6 +35,9 @@
                     <input type="text" id="phone" name="phone" placeholder="Enter your phone number"
                         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                         required>
+                    @error('phone')
+                        <div class="font-medium text-red-600">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div>
@@ -41,6 +50,9 @@
                         <option value="Tidak Hadir">Tidak Hadir</option>
                         <option value="Belum Tahu">Belum Tahu</option>
                     </select>
+                    @error('status')
+                        <div class="font-medium text-red-600">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 

@@ -101,17 +101,16 @@
 
     <div class="h-screen flex flex-col justify-between items-end bg-cover bg-center fade-in"
         style="background-image: url('{{ asset('gambar/hero-awal.jpg') }}');">
-        <!-- Overlay untuk kegelapan -->
+
         <div class="absolute h-screen w-full bg-gray-900 opacity-50"></div>
 
         <div class="w-full mt-5 z-10 fade-in2">
             <div class="flex flex-col justify-center items-center text-center px-4">
-                <!-- Judul -->
+
                 <div class="font-dancing text-4xl sm:text-5xl lg:text-[5rem] text-white mb-2">
                     Suep & Romlah
                 </div>
 
-                <!-- Subjudul dengan border bawah -->
                 <div class="font-garamond text-2xl sm:text-3xl text-white mb-5 relative">
                     <div
                         class="absolute bottom-[-5px] left-1/2 transform -translate-x-1/2 w-3/4 border-b-[3px] border-white">
@@ -137,7 +136,6 @@
                 <button id="toggleButton"
                     class="flex text-xs sm:text-base items-center justify-center bg-transparent border-[2px] border-white hover:bg-black hover:bg-opacity-20 text-white font-bold py-2 px-4 rounded-full w-1/2 sm:w-[30%] lg:w-[20%]">
                     Open Invitation
-                    <!-- SVG Ikon Amplop -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 200 150"
                         class="ml-2 envelope">
                         <rect x="20" y="30" width="160" height="90" fill="#f0f0f0" stroke="#333" stroke-width="2" />
@@ -152,7 +150,7 @@
     </div>
 
     <div id="newSections" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out overflow-x-hidden">
-        <!-- Section 1 -->
+
         <div class="h-screen flex flex-col justify-between items-center bg-center bg-cover"
             style="background-image: url('{{ asset('gambar/undangan1.jpg') }}');">
             <div class="absolute h-screen w-full bg-black bg-opacity-[28%]"></div>
@@ -212,7 +210,7 @@
                 style="background-image: url('{{ asset('gambar/daun.png') }}');">
             </div>
 
-            <!-- Section Content with fade effect -->
+
             <div class="bawah-atas">
                 <div class="text-3xl font-garamond font-medium text-biru mb-5">Bridge & Groom</div>
                 <div class="text-sm font-garamond text-biru font-light tracking-wide">
@@ -230,10 +228,9 @@
         <div id="section3" class="h-screen relative bg-cover bg-center flex  items-end"
             style="background-image: url('{{ asset('gambar/pria.jpg') }}');">
 
-            <!-- Overlay -->
+
             <div class="absolute h-screen w-full bg-black bg-opacity-[28%]"></div>
 
-            <!-- Rotated Text -->
             <div class="absolute text-white text-3xl font-poppins font-light top-[7.5rem] right-[-3.5rem]"
                 id="fadeInSection">
                 <div class="rotate-[90deg] text-[36px] text-crime">The Groom</div>
@@ -266,10 +263,8 @@
         <div id="section4" class="h-screen relative bg-cover bg-center flex  items-end"
             style="background-image: url('{{ asset('gambar/wanita.webp') }}');">
 
-            <!-- Overlay -->
             <div class="absolute h-screen w-full bg-black bg-opacity-[28%]"></div>
 
-            <!-- Rotated Text -->
             <div class="absolute text-crime text-3xl font-poppins font-light top-[7.5rem] left-[-3.5rem]"
                 id="fadeInSection">
                 <div class="rotate-[-90deg] text-[36px] ">The Bridge</div>
@@ -321,7 +316,6 @@
                     </div>
                 </div>
 
-                <!-- Video Section -->
                 <div class="text-center text-2xl font-dancing font-semibold mt-3 text-biru atas-bawah">Our Gallery</div>
                 <div class="mt-3 mb-5 video-container flex justify-center bawah-atas">
                     <video class="w-full md:w-3/4 max-w-full h-fit" controls autoplay muted>
@@ -518,6 +512,24 @@
             </div>
 
         </div>
+        <div>
+            <audio id="audioPlayer" loop controls class="fixed top-5 right-5 h-fit w-fit">
+                <source src="{{ asset('musics/48.mp3') }}" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+
+        <button class="fixed bottom-5 right-5 h-[52px] w-[52px] rounded-full bg-coklatemas z-10 p-2 animate-bounce">
+            <div id="playPauseButton" class="w-full h-full bg-crime rounded-full flex justify-center items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#74583E" class="bi bi-play-fill"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
+                </svg>
+            </div>
+        </button>
+
     </div>
 
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
@@ -552,36 +564,82 @@
             }
         })
     </script>
+
     <script>
+
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(function () {
                 alert('Copied to clipboard!');
-                // Optionally, you can set a success message here
             }).catch(function (err) {
                 console.error('Could not copy text: ', err);
             });
         }
 
         document.addEventListener("DOMContentLoaded", () => {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const playPauseButton = document.getElementById('playPauseButton');
             const sections1 = document.querySelectorAll(".bawah-atas");
             const sections2 = document.querySelectorAll(".kiri-kanan");
             const sections3 = document.querySelectorAll(".kanan-kiri");
             const sections4 = document.querySelectorAll(".atas-bawah");
-            const videos = document.querySelectorAll("video"); // Menargetkan elemen video
+            const audios = document.querySelectorAll("audio");
+            const videos = document.querySelectorAll("video");
+            const playIcon = ` <svg xmlns="http://www.w3.org/2000/svg" fill="#74583E" viewBox="0 0 16 16" class="h-6 w-6"> <path d="M5.5 3.5v9l7-4.5-7-4.5z"/>  </svg>`;
+            const pauseIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="#74583E" viewBox="0 0 16 16" class="h-6 w-6"> <path d="M5 3h2v10H5V3zm4 0h2v10H9V3z"/> </svg>`;
 
+            // Cek apakah ada status penyimpanan dari sebelumnya
+            const isAudioPaused = localStorage.getItem('audioPaused') === 'true';
+
+            if (!isAudioPaused) {
+                // Autoplay saat halaman pertama kali dimuat
+                audioPlayer.play().catch((error) => {
+                    console.log('Autoplay audio blocked:', error);
+                });
+            } else {
+                audioPlayer.pause();
+            }
+
+            // Event untuk menangani tombol Play/Pause
+            playPauseButton.addEventListener('click', () => {
+                if (audioPlayer.paused) {
+                    audioPlayer.play().catch((error) => {
+                        console.log('Play failed:', error);
+                    });
+                    playPauseButton.innerHTML = pauseIcon;
+                    localStorage.setItem('audioPaused', 'false');
+                } else {
+                    audioPlayer.pause();
+                    playPauseButton.innerHTML = playIcon;
+                    localStorage.setItem('audioPaused', 'true');
+                }
+            });
+
+            // IntersectionObserver untuk audio dan video
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add("visible");
 
+                            // Jika elemen adalah audio, jalankan autoplay
+                            if (entry.target.tagName === "AUDIO") {
+                                entry.target.play().catch((error) => {
+                                    console.log('Autoplay audio blocked:', error);
+                                });
+                            }
                             // Jika elemen adalah video, jalankan autoplay
                             if (entry.target.tagName === "VIDEO") {
-                                entry.target.play();
+                                entry.target.play().catch((error) => {
+                                    console.log('Autoplay video blocked:', error);
+                                });
                             }
                         } else {
                             entry.target.classList.remove("visible");
 
+                            // Jika elemen adalah audio, hentikan playback
+                            if (entry.target.tagName === "AUDIO") {
+                                entry.target.pause();
+                            }
                             // Jika elemen adalah video, hentikan playback
                             if (entry.target.tagName === "VIDEO") {
                                 entry.target.pause();
@@ -592,12 +650,15 @@
                 { threshold: 0.5 } // Aktif saat 50% elemen terlihat
             );
 
-            // Observasi elemen video
+            // Observasi elemen audio dan video
+            audios.forEach((audio) => {
+                observer.observe(audio);
+            });
             videos.forEach((video) => {
                 observer.observe(video);
             });
 
-            // Observasi elemen lain
+            // Observasi elemen lainnya
             sections1.forEach((section1) => {
                 observer.observe(section1);
             });
@@ -609,8 +670,9 @@
             });
             sections4.forEach((section4) => {
                 observer.observe(section4);
-            })
+            });
         });
+
 
         const button = document.getElementById('toggleButton');
         const newSections = document.getElementById('newSections');
