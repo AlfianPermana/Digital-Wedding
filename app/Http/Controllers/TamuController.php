@@ -11,7 +11,7 @@ class TamuController extends Controller
 {
     public function index()
     {
-        $tamu = tamu::all();
+        $tamu = tamu::paginate(20);
 
         return view('content.datatamu', compact('tamu'));
     }

@@ -13,8 +13,6 @@ class APIController extends Controller
     public function index()
     {
         $tamu = tamu::all();
-
-        //  return response()->json(['tamu' => $tamu], 200);
         return TamuResource::collection($tamu);
     }
 

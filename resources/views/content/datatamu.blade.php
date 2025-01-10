@@ -46,5 +46,39 @@
             </tbody>
         </table>
     </div>
+    <div class="flex justify-between">
+        <div class="mt-4 text-gray-700">
+            <p>
+                Showing
+                {{ $tamu->firstItem() }}
+                to
+                {{ $tamu->lastItem() }}
+                of
+                {{ $tamu->total() }}
+                results
+            </p>
+        </div>
+        <div class="mt-2 flex gap-4 me-2">
+            @if ($tamu->onFirstPage())
+                <span class="hidden"></span>
+            @else
+                <a href="{{ $tamu->previousPageUrl() }}"
+                    class="px-4 py-2 bg-transparent border border-gray-800 text-gray-800 hover:border-none hover:text-white rounded hover:bg-gray-800">
+                    Previous
+                </a>
+            @endif
+
+            @if ($tamu->hasMorePages())
+                <a href="{{ $tamu->nextPageUrl() }}"
+                    class="px-4 py-2 bg-transparent border border-gray-800 text-gray-800 hover:border-none hover:text-white rounded hover:bg-gray-800">
+                    Next
+                </a>
+            @else
+                <span class="hidden">Next</span>
+            @endif
+        </div>
+    </div>
+
+
 </div>
 @endsection

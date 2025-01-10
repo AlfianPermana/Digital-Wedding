@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Wedding Of</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,8 +98,7 @@
 
 <body class="bg-white ">
 
-
-    <div class="h-screen flex flex-col justify-between items-end bg-cover bg-center fade-in"
+    <div class="awal h-screen flex flex-col justify-between items-end bg-cover bg-center fade-in"
         style="background-image: url('{{ asset('gambar/hero-awal.jpg') }}');">
 
         <div class="absolute h-screen w-full bg-gray-900 opacity-50"></div>
@@ -514,7 +513,7 @@
         </div>
         <div>
             <audio id="audioPlayer" loop controls class="fixed top-5 right-5 h-fit w-fit">
-                <source src="{{ asset('musics/48.mp3') }}" type="audio/mp3">
+                <source src="{{ asset('musics/rocketer.mp3') }}" type="audio/mp3">
                 Your browser does not support the audio element.
             </audio>
         </div>
@@ -522,16 +521,16 @@
 
         <button class="fixed bottom-5 right-5 h-[52px] w-[52px] rounded-full bg-coklatemas z-10 p-2 animate-bounce">
             <div id="playPauseButton" class="w-full h-full bg-crime rounded-full flex justify-center items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#74583E" class="bi bi-play-fill"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#74583E" viewBox="0 0 16 16" class="h-6 w-6">
+                    <path d="M5 3h2v10H5V3zm4 0h2v10H9V3z" />
                 </svg>
             </div>
         </button>
 
     </div>
 
+
+    <script src={{asset('js/utama.js')}}></script>
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -566,15 +565,6 @@
     </script>
 
     <script>
-
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(function () {
-                alert('Copied to clipboard!');
-            }).catch(function (err) {
-                console.error('Could not copy text: ', err);
-            });
-        }
-
         document.addEventListener("DOMContentLoaded", () => {
             const audioPlayer = document.getElementById('audioPlayer');
             const playPauseButton = document.getElementById('playPauseButton');
@@ -587,47 +577,31 @@
             const playIcon = ` <svg xmlns="http://www.w3.org/2000/svg" fill="#74583E" viewBox="0 0 16 16" class="h-6 w-6"> <path d="M5.5 3.5v9l7-4.5-7-4.5z"/>  </svg>`;
             const pauseIcon = `<svg xmlns="http://www.w3.org/2000/svg" fill="#74583E" viewBox="0 0 16 16" class="h-6 w-6"> <path d="M5 3h2v10H5V3zm4 0h2v10H9V3z"/> </svg>`;
 
-            // Cek apakah ada status penyimpanan dari sebelumnya
-            const isAudioPaused = localStorage.getItem('audioPaused') === 'true';
 
-            if (!isAudioPaused) {
-                // Autoplay saat halaman pertama kali dimuat
-                audioPlayer.play().catch((error) => {
-                    console.log('Autoplay audio blocked:', error);
-                });
-            } else {
-                audioPlayer.pause();
-            }
-
-            // Event untuk menangani tombol Play/Pause
             playPauseButton.addEventListener('click', () => {
                 if (audioPlayer.paused) {
-                    audioPlayer.play().catch((error) => {
-                        console.log('Play failed:', error);
-                    });
+                    audioPlayer.play();
                     playPauseButton.innerHTML = pauseIcon;
-                    localStorage.setItem('audioPaused', 'false');
                 } else {
                     audioPlayer.pause();
                     playPauseButton.innerHTML = playIcon;
-                    localStorage.setItem('audioPaused', 'true');
                 }
             });
 
-            // IntersectionObserver untuk audio dan video
+
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add("visible");
 
-                            // Jika elemen adalah audio, jalankan autoplay
+
                             if (entry.target.tagName === "AUDIO") {
                                 entry.target.play().catch((error) => {
                                     console.log('Autoplay audio blocked:', error);
                                 });
                             }
-                            // Jika elemen adalah video, jalankan autoplay
+
                             if (entry.target.tagName === "VIDEO") {
                                 entry.target.play().catch((error) => {
                                     console.log('Autoplay video blocked:', error);
@@ -636,21 +610,19 @@
                         } else {
                             entry.target.classList.remove("visible");
 
-                            // Jika elemen adalah audio, hentikan playback
                             if (entry.target.tagName === "AUDIO") {
                                 entry.target.pause();
                             }
-                            // Jika elemen adalah video, hentikan playback
+
                             if (entry.target.tagName === "VIDEO") {
                                 entry.target.pause();
                             }
                         }
                     });
                 },
-                { threshold: 0.5 } // Aktif saat 50% elemen terlihat
+                { threshold: 0.5 }
             );
 
-            // Observasi elemen audio dan video
             audios.forEach((audio) => {
                 observer.observe(audio);
             });
@@ -658,7 +630,6 @@
                 observer.observe(video);
             });
 
-            // Observasi elemen lainnya
             sections1.forEach((section1) => {
                 observer.observe(section1);
             });
@@ -672,55 +643,6 @@
                 observer.observe(section4);
             });
         });
-
-
-        const button = document.getElementById('toggleButton');
-        const newSections = document.getElementById('newSections');
-        const initialSection = document.querySelector('.h-screen');
-
-        button.addEventListener('click', () => {
-            // Hide the button and the initial section
-            document.querySelector('.h-screen').classList.add('hidden');
-            button.classList.add('hidden');
-
-            // Show the new sections with fade transition
-            newSections.classList.remove('hidden');
-
-            // Trigger fade-in by adding opacity class
-            setTimeout(() => {
-                newSections.classList.add('opacity-100');
-            }, 50); // small delay for the transition to take effect
-        });
-
-        const countdownDate = new Date("April 29, 2025 00:00:00").getTime();
-
-        // Update the countdown every 1 second
-        const countdownFunction = setInterval(() => {
-            // Get the current date and time
-            const now = new Date().getTime();
-
-            // Find the time remaining
-            const timeLeft = countdownDate - now;
-
-            // Time calculations for days, hours, minutes, and seconds
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            // Display the result in the respective elements
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
-
-            // If the countdown is finished, display a message
-            if (timeLeft < 0) {
-                clearInterval(countdownFunction); document.getElementById("days").innerHTML = "0";
-                document.getElementById("hours").innerHTML = "0"; document.getElementById("minutes").innerHTML = "0";
-                document.getElementById("seconds").innerHTML = "0"; document.getElementById("countdown").innerHTML = "EXPIRED";
-            }
-        }, 1000); </script>
 
     </script>
 

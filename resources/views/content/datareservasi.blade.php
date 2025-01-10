@@ -33,7 +33,6 @@
 
     <div class="text-gray-800 text-3xl font-semibold text-center mb-5">Data Reservasi</div>
 
-    <!-- Table with horizontal scroll -->
     <div class="overflow-x-auto sm:overflow-hidden md:overflow-hidden">
         <table class="min-w-full table-auto bg-white border-separate border-spacing-0 shadow-md rounded-lg">
             <thead class="bg-gray-800 text-white">
@@ -69,5 +68,38 @@
         </table>
     </div>
 
+    <div class="flex justify-between mt-5">
+        <div class="mt-4 text-gray-700">
+            <p>
+                Showing
+                {{ $rsv->firstItem() }}
+                to
+                {{ $rsv->lastItem() }}
+                of
+                {{ $rsv->total() }}
+                results
+            </p>
+        </div>
+        <div class="mt-2 flex gap-4 me-2">
+            @if ($rsv->onFirstPage())
+                <span class="hidden"></span>
+            @else
+                <a href="{{ $rsv->previousPageUrl() }}"
+                    class="px-4 py-2 bg-transparent border border-gray-800 text-gray-800 hover:border-none hover:text-white rounded hover:bg-gray-800">
+                    Previous
+                </a>
+            @endif
+
+            <!-- Tombol Next -->
+            @if ($rsv->hasMorePages())
+                <a href="{{ $rsv->nextPageUrl() }}"
+                    class="px-4 py-2 bg-transparent border border-gray-800 text-gray-800 hover:border-none hover:text-white rounded hover:bg-gray-800">
+                    Next
+                </a>
+            @else
+                <span class="hidden">Next</span>
+            @endif
+        </div>
+    </div>
 </div>
 @endsection

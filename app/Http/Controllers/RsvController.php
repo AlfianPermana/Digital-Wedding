@@ -12,7 +12,7 @@ class RsvController extends Controller
 {
     public function index()
     {
-        $rsv = rsv::all();
+        $rsv = rsv::paginate(10);
         $tamu = tamu::all();
         $totaltamu = tamu::count();
 
